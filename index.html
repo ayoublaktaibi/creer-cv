@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Générateur de CV</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.10/jspdf.plugin.autotable.min.js"></script>
+    <script src="scripts.js" defer></script>
+</head>
+<body>
+    <div class="container">
+        <h1><i class='bx bx-file'></i>Créer votre CV</h1>
+        <form id="cv-form">
+            <fieldset>
+                <div class="photo">
+                    <label for="photo">Photo</label>
+                    <div id="photo-upload" onclick="document.getElementById('photo-input').click();">
+                        <img id="photo-preview" src="" alt="Aperçu de la photo de profil" style="display:none;">
+                        <span id="upload-text"><i class='bx bx-user' style="font-size: 25px;"></i><br>Ajouter votre photo</span>
+                    </div>
+                    <input type="file" id="photo-input" name="photo" accept="image/*" onchange="previewPhoto(event)" style="display:none;">                
+                </div>    
+                <div class="nontitre">
+                    <div class="form_item">
+                        <label for="name">Nom complet</label>
+                        <input type="text" id="name" name="name" required>    
+                    </div>
+                    <div class="form_item" style="margin-bottom: 0;">
+                        <label for="titre">Titre</label>
+                        <input type="text" id="titre" name="titre" required>    
+                    </div>
+                </div>
+            </fieldset>
+
+            <!-- Email et Téléphone -->
+            <fieldset>
+                <div class="nontitre">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>    
+                </div>
+                <div class="nontitre">
+                    <label for="phone">Téléphone</label>
+                    <input type="text" id="phone" name="phone" required>    
+                </div>
+            </fieldset>
+
+            <!-- Adresse, code postal, ville -->
+            <div class="form_item">
+                <label for="address">Adresse</label>
+                <input type="text" id="address" name="address" required>
+            </div>
+
+            <fieldset>
+                <div class="nontitre">
+                    <label for="postal-code">Code postal</label>
+                    <input type="text" id="postal-code" name="postal-code" required>
+                </div>
+                <div class="nontitre">
+                    <label for="city">Ville</label>
+                    <input type="text" id="city" name="city" required>
+                </div>
+            </fieldset>
+
+            <!-- Etat civil -->
+            <div class="form_item">
+                <label for="civil">Etat civil</label>
+                <input type="text" id="civil" name="civil" required>
+            </div>
+
+            <!-- Profil -->
+            <div class="form_item">
+                <label for="profile">Profil</label>
+                <textarea id="profile" name="profile" required></textarea>
+            </div>
+
+            <fieldset>
+                <div class="nontitre">
+                    <label for="languages">Langues</label>
+                    <div id="languages-container">
+                        <input type="text" id="languages" name="languages[]" required>
+                    </div>
+                    <button type="button" class="add-button" id="add-language">+ Ajouter une langue</button>
+                </div>
+                <div class="nontitre">
+                    <label for="interests">Centre d'intérêts</label>
+                    <div id="interests-container">
+                        <input type="text" id="interests" name="interests[]" required>
+                    </div>
+                    <button type="button" class="add-button" id="add-interest">+ Ajouter un centre d'intérêt</button>
+                </div>
+            </fieldset>
+
+            <!-- Expérience professionnelle, cursus, formation, compétences -->
+            <div class="form_item">
+                <label for="experience">Expérience professionnelle</label>
+                <div id="experience-container">
+                    <textarea id="experience" name="experience[]" required></textarea>
+                </div>
+                <button type="button" class="add-button" id="add-experience">+ Ajouter une expérience</button>
+            </div>
+
+            <div class="form_item">
+                <label for="cursus">Cursus scolaire</label>
+                <div id="cursus-container">
+                    <textarea id="cursus" name="cursus[]" required></textarea>
+                </div>
+                <button type="button" class="add-button" id="add-cursus">+ Ajouter un cursus</button>
+            </div>
+
+            <div class="form_item">
+                <label for="formation">Formation</label>
+                <div id="formation-container">
+                    <textarea id="formation" name="formation[]" required></textarea>
+                </div>
+                <button type="button" class="add-button" id="add-formation">+ Ajouter une formation</button>
+            </div>
+
+            <div class="form_item">
+                <label for="skills">Compétences</label>
+                <div id="skills-container">
+                    <textarea id="skills" name="skills[]" required></textarea>
+                </div>
+                <button type="button" class="add-button" id="add-skill">+ Ajouter une compétence</button>
+            </div>
+
+            <button type="submit" style="border-radius: 30px;">Générer le CV</button>
+        </form>
+    </div>
+</body>
+</html>
